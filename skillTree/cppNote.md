@@ -103,6 +103,17 @@
  - __常量引用的绑定原理__
  - 当发现绑定需要进行类型转换时，编译器生成临时量，让常量引用绑定 __临时量对象__ 。
  
+ 10.2 指针与const
+ - 指向常量的指针：（pointer to const）
+ - const double pi = 3.1416;  //const pi
+ - const double *cptr = &pi; //指向常量的指针cptr，不允许通过此指针修改常量的值，也可以指向非常量对象
+ 
+ - const指针(常量指针)，指针本身是常量，指针本身的值不变，指向不改变
+ - int errNumb = 0;
+ - int *const curErr = & errNumb; //curErr将一直指向errNumb
+ - __技巧，从右向左阅读，离得最近的是const---本身是常量对象，*---是一个常量指针，int---指向int对象__
+ 
+ 
  
 
 
