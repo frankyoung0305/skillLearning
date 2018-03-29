@@ -18,11 +18,11 @@ dog's back.
 > ## This is an H2 in a blockquote
 
 
-1.list
-2.list2
-3.list3
+1. list
+2. list2
+3. list3
 
--1
--2
--3
+- 1
+- 2
+- 3
 
