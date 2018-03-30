@@ -113,6 +113,15 @@
  - int *const curErr = & errNumb; //curErr将一直指向errNumb
  - __技巧，从右向左阅读，离得最近的是const---本身是常量对象，*---是一个常量指针，int---指向int对象__
  
+ 10.3. 顶层 const
+ - 顶层const： 指针本身是常量， 或任意对象是常量
+ - 底层const： 指针对象是常量
+ - const int &r = ci; //用于声明引用的const都是底层const
+ 
+ 10.4. constexpr 常量表达式
+ - 值不会改变，在编译过程中就能得到计算结果的表达式。
+ - const 
+ 
  
  
 
