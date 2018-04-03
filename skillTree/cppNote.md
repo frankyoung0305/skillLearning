@@ -120,7 +120,40 @@
  
  10.4. constexpr 常量表达式
  - 值不会改变，在编译过程中就能得到计算结果的表达式。
- - const 
+ - const int i = 20;  //const val
+ - const int constexp = i + 1; //const expr 用常量初始化的const对象
+ - const int sz = get_size();  //不是常量表达式，只有在运行时才能知道结果
+ - __constexpr变量__
+ - 将变量声明为constexpr来验证变量的值是否为常量表达式 1）变量一定是常量 2）必须用常量初始化（或使用constexpr函数初始化）
+ - （p59）字面值常量
+ - constexpr int *q = nullptr;  //q是常量指针！ constexpr是顶层const 指向不改变（p60）
+ 
+ 11. 处理类型
+ - typedef double wages; //wages 是 double的同义词
+ - typedef wages base, *p; //base 是double的同义词， p是double*的同义词
+ 
+ - using SI = Sales_item; //SI是Sales_item的同义词
+ -__(p61) 别名指代复合类型，特别注意__
+ 
+ - auto类型声明 
+ - 一条语句只能有一个数据类型
+ - const保留的性质（p62）
+ - decltype 类型指示符，编译器分析类型，并不实际调用（p62）
+ - decltype(f()) sum = x;   
+ - __decltype()对引用的返回值记得带上引用__ (p63) 解引用操作得到引用类型，双层括号得到引用
+ 
+ 12. struct
+ - struct定义最后加上分号，因为类体后面可以紧跟变量名定义对象
+ 
+ - 一般在头文件中定义类，不要在函数体里定义类
+ - 头文件中包含只能被定义一次的实体：类  const  constexpr等
+ - 使用头文件保护符防止重复包含：
+ - #ifndef XXX_XXX
+ - #define XXX_XXX     <-预处理变量 大写 唯一
+ - /*..........*/
+ - #endif
+ 
+ 
  
  
  
