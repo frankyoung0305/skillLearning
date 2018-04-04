@@ -153,6 +153,17 @@
  - /*..........*/
  - #endif
  
+ ###chap3
+ 1.using
+ - using std::cin;  //using声明，可以直接使用名字cin
+ - 头文件中的代码一般不适用using，重复拷贝后，可能产生名字冲突
+ 
+ - string
+ - #include <string>
+ - using std::string;
+ 
+ - string s4(n, 'c'); //s4初始化为连续n个c的字符串
+ 
  
  
  
