@@ -158,11 +158,52 @@
  - using std::cin;  //using声明，可以直接使用名字cin
  - 头文件中的代码一般不适用using，重复拷贝后，可能产生名字冲突
  
- - string
+ 2. string
  - #include <string>
  - using std::string;
  
  - string s4(n, 'c'); //s4初始化为连续n个c的字符串
+ - 直接初始化和拷贝初始化（用“=”）
+ 
+ - 操作
+ - getline(is, s) //从is中读一行赋给s
+ - s[1] + s[2] //连接
+ - <, <=, >, >= //利用字典顺序比较，大小写敏感
+ 
+ - string::size_type //size()方法返回类型，无符号整型（p79）
+ 
+ - 字面值与string相加，不能两个字面值相加
+ 
+ - 字符处理 cctype头文件（p82）
+ 
+ - __基于范围的for语句__
+ - for(atuo c : str){ /*....*/ } //c的类型是char
+ - for(auto &c : s){ /*....*/ } //这里是引用，会改变s中字符的值
+ 
+ 3. vector
+ - 容器（part2）
+ - #include <vector>
+ - using std::vector;
+ 
+ - 类模板，实例化
+ 
+ - 定义和初始化：（p87）
+ - vector<T> v2(v1)； //拷贝v1的元素给v2
+ - vector<T> v3(n, val); //
+ - vector<T> v4(n); //
+ - vector<T> v5{a, b, c...}; //(p89) 列表初始化 提供的值不能作为元素初始值时，尝试默认初始化
+ 
+ - vector操作（p91）
+ 4. 迭代器（iterator）
+ - 类似指针，提供对对象的间接访问，分为有效无效，有效迭代器指向某个元素或指向尾元素的下一位置；其他是无效。
+ 
+ - auto b = v.begin(), e = v.end(); //b,e类型相同
+ - begin成员返回指向第一个元素的迭代器，end成员返回指向容器“尾元素下一位置”的迭代器（“尾后元素“），标记表示已经处理完了容器中的所有元素（尾后迭代器），当容器为空，b和e返回同一个迭代器。
+ 
+ - 迭代器操作（p96）
+ - *iter, iter->mem, ++iter, --iter
+ - 迭代器运算符==，!=判断迭代器是否相等
+ 
  
  
  
