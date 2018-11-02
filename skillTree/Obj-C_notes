@@ -1,0 +1,4 @@
+#Obj-C Notes
+#trivals
+- @class; 避免循环引用，表示引入了一个类。see: https://www.jianshu.com/p/4f5081ef9eb3
+- (instancetype); instancetype的作用，就是使那些非关联返回类型的方法返回所在类的类型！（相比id类型）
