@@ -1,6 +1,6 @@
-> JavaScriptCore notes
+# JavaScriptCore notes
 JavaScript引擎是专门处理JavaScript脚本的虚拟机
-# JavaScriptCore组成
+## JavaScriptCore组成
 JavaScriptCore主要由以下模块组成：
 - Lexer 词法分析器，将脚本源码分解成一系列的Token
 - Parser 语法分析器，处理Token并生成相应的语法树
@@ -10,9 +10,9 @@ JavaScriptCore主要由以下模块组成：
 - FTL 高通量优化的JIT
 see: https://trac.webkit.org/wiki/JavaScriptCore
 
-# JavaScriptCore
+## JavaScriptCore
 JavaScriptCore是一个C++实现的开源项目。使用Apple提供的JavaScriptCore框架，你可以在Objective-C或者基于C的程序中执行Javascript代码，也可以向JavaScript环境中插入一些自定义的对象。
-```
+```javascript
 #ifndef JavaScriptCore_h
 #define JavaScriptCore_h
 
@@ -31,7 +31,7 @@ JavaScriptCore是一个C++实现的开源项目。使用Apple提供的JavaScript
 
 #endif /* JavaScriptCore_h */
 ```
-## JSC的主要几个类
+### JSC的主要几个类
 JavaScriptCore的主要几个类：
 - JSContext
 - JSValue
@@ -39,8 +39,8 @@ JavaScriptCore的主要几个类：
 - JSVirtualMachine
 - JSExport
 
-## Hello World
-```
+### Hello World
+```objc
 //创建虚拟机
 JSVirtualMachine *vm = [[JSVirtualMachine alloc] init];
 
