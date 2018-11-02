@@ -79,7 +79,7 @@ JSC API都是线程安全的，可以在任意线程创建JSValue或执行JS代�
 #### JSContext执行JS代码
 - 调用evaluateScript函数可以执行一段top-level 的JS代码，并可向global对象添加函数和对象定义
 - 其返回值是JavaScript代码中最后一个生成的值
-```
+```objc
 /* 执行一段JS代码，返回最后生成的一个值 */
 (JSValue *)evaluateScript:(NSString *)script;
 
@@ -101,7 +101,7 @@ JSC API都是线程安全的，可以在任意线程创建JSValue或执行JS代�
 
 #### JSContext访问JS对象
 一个JSContext对象对应了一个全局对象（global object），全局变量是全局对象的属性，可以通过JSValue对象或者context下标的方式来访问。
-```
+```objc
 JSValue *value = [context evaluateScript:@"var a = 1+2*3;"];
 
 NSLog(@"a = %@", [context objectForKeyedSubscript:@"a"]);  //使用context的实例方法objectForKeyedSubscript
@@ -116,7 +116,7 @@ a = 7
 a = 7
 ```
 通过设置JSContext，来在执行上下文中注入native的对象或方法。
-```
+```objc
 /* 例如：以下代码在JavaScript中创建了一个实现是Objective-C block的function */
 context[@"makeNSColor"] = ^(NSDictionary *rgb){
     float r = [rgb[@"red"] floatValue];
