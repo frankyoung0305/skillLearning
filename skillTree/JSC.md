@@ -144,14 +144,21 @@ OBJC对象 和 JS对象间的转换：
 
 ### JSExport
 一种需要你实现的协议，继承自<JSExport>，用于将OBJC类，其实例方法，其类方法，以及其属性暴露给JS代码。
+    
 被注入JS的类其实是一个实现了此协议的类，被注入的JS的实例是一个实现了上述类的实例；
+    
 OC实例方法->JS方法
 OC构造函数—>JS构造器
 OC property->JS 属性访问器
 OC类方法->JS构造器的方法
+
 从一个OBJC类的实例创建一个JS对象，且这个JSValue没有明确拷贝转换方式时，JSC会创建一个JS wrapper对象。（对于特定类型，JSC会自动将值拷贝到对应的JS类型中；比如NSString实例会变成JS string）
+
 JS里继承是以原型链的形式存在的。对于每一个想要暴露的OBJC对象，JSC会在其所在的 中创建一个prototype。
+
 对于每一个导出的实例方法，JavaScriptCore都会在prototype中创建一个存取器属性。对于每一个导出的类方法，JavaScriptCore会在constructor对象中创建一个对应的JavaScript function。
+
 在JS中调用native代码，native代码的注入可以用Block或JSExport两种方式；
+
 OC中的seletor会自动转换为JS中的方法名字，使用驼峰命名规则，也可以自定义。
 
