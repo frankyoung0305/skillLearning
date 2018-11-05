@@ -187,4 +187,20 @@ JSContext的exceptionHandler属性可用来接收JavaScript中抛出的异常，
 将context.exception设置为nil将会导致JavaScript认为异常已经被捕获处理。
 
 
+# JavaScriptCore C APIs
+see: https://juejin.im/post/5b3b210df265da0fb01846a0
+
+JSC C API包含六个类：
+- JSBase.h  
+JavaScriptCore 的接口文件，这个类中 import 了其他的类，简单封装了其他的 C API。
+- JSContextRef.h  
+JSContextRef 相当于 Objective-C 中的 JSContext，主要提供 JS 执行的上下文环境。
+- JSObjectRef.h  
+JSObjectRef 相当于 Objective-C 中的 JSObject，它代表一个JavaScript对象，交互的核心放在都在这个类中实现。
+- JSStringRef.h  
+是 JavaScript 中基本的字符串表示形式。
+- JSStringRefCF.h  
+包含 CFString 便利的方法。
+- JSValueRef.h  
+JSValueRef 相当于 Objective-C 中的 JSValue ，对应一个 JavaScript 的值，它是所有JavaScript值的基本类型
 
