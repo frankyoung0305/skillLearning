@@ -162,3 +162,29 @@ JS里继承是以原型链的形式存在的。对于每一个想要暴露的OBJ
 
 OC中的seletor会自动转换为JS中的方法名字，使用驼峰命名规则，也可以自定义。
 
+### 内存管理
+- 每个JSValue对象会持有一个JSContext对象的强引用，只要至少有一个与JSContext关联的JSValue背持有，JSContext就会一直存活。
+- 导出的native对象被JS的全局对象所持有。
+- JSContext对象引用了JS执行环境中的全局对象。
+- 全局对象的某个属性对应了一个导出的native对象。
+
+- 所以：将要导出的native函数或block不可以直接引用JSContext以及JSValue。 否则会造成循环引用，导致JSContext无法被释放。
+- 使用[JSContext currentContext]来获取当前context
+- 使用JSMangedValue来替代JSvalue
+
+### JSManagedValue
+一个JSManagedValue包装了一个JSValue对象，并增加了“有条件的保留”特性以实现值的自动内存管理。主要用于在一个暴露到JS的native对象中存储一个JS的值。
+
+JSManagedValue的“有条件的保留”特性确保了其中的JSValue对象在以下情况满足时被保留：（否则JS中的对应值会变成nil，JSValue对象也会被释放
+- 此JS值可以通过JS对象图（object graph）被访问（也就是说，不属于JS垃圾回收[GC]的部分）。
+- 此JSManagedValue对象可以通过OC的对象图被访问，需要使用JSVM的实例方法addManagedReference(_:withOwner:)来将本JSMValue加入到JSVM实例中
+
+
+### 异常处理
+JSContext的exceptionHandler属性可用来接收JavaScript中抛出的异常，默认的exceptionHandler会将exception设置给context的exception属性。
+因此，默认的表现就是从JavaScript中抛给native的未处理的异常又被抛回到JavaScript中，异常并未被捕获处理。
+
+将context.exception设置为nil将会导致JavaScript认为异常已经被捕获处理。
+
+
+
