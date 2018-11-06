@@ -204,3 +204,60 @@ JSObjectRef 相当于 Objective-C 中的 JSObject，它代表一个JavaScript对
 - JSValueRef.h  
 JSValueRef 相当于 Objective-C 中的 JSValue ，对应一个 JavaScript 的值，它是所有JavaScript值的基本类型
 
+## JSBase.h
+三个方法：检查脚本的语法错误，执行js脚本，执行GC  数据类型：JSClassRef...
+
+## JSContextRef.h
+主要提供 JS 执行所需所有资源和环境
+
+获取某个context的全局对象  JSContextGroup的管理  JSGlobalContext的管理
+
+contextGroup类似虚拟机，但是没有自动GC  globalContext类似JSContext
+
+## JSObjectRef.h
+JS对象，提供两部分API：创建JS对象 + 为创建的JS对象添加Callback
+- 创建/保持/销毁 JS类
+- 创建JS对象、数组、构造器、日期、错误、方法、正则
+- 将对象作为构造器进行调用，将对象作为方法进行调用
+- 获取对象的可枚举属性，删除对象的属性
+- 对对象的private，property, prototype进行操作
+- 对对象的属性名进行操作
+- JS对象条件判断：是否有属性、是否是方法/构造器
+
+- 对象被初始化时的回调
+- 对象作为构造器被调用时执行的回调（new xxx）
+- 对象作为方法被调用时执行的回调
+- 对象被转换为某种特定JS类型时的回调
+- 删除对象属性时的回调
+- 被GC之前的回调（finalized
+- 获取属性/属性名时的回调
+- 设置对象属性时的回调
+- 作为“instanceof”参数时的回调，是否有实例
+- 是否有属性回调
+
+## JSValueRef.h
+一个 JavaScript 值，提供用Object-C的基础数据类型来创建 JS 的值，或者将JS 的值转变为OC的基础数据类型
+
+- 获取JS值的类型，返回一个枚举JSType
+
+- native值创建JS的值
+
+- JS值转变为native值
+
+= 保护JS值不被GC，将这个JS值作为全局变量或是存在堆上。
+
+- 判断JS值是否是某种类型
+
+## JSString.h
+JavaScript 对象中字符串对象，公开的api包括如下
+
+- 从Unicode字符数组创建
+- 从UTF8数组创建
+- 获取JS string的后台存储的内存指针，这个buffer存有Unicode字符
+- 获取长度，获取JS string转换成UTF8 string可能占据的最大字节数
+- JS字符串转换成UTF8字符串，并把结果拷贝到其他的buffer里
+- 判断字符串是否相等
+
+## JSStringRefCF.h
+CFString 与 JavaScript string 相互转化（core foundation）
+
